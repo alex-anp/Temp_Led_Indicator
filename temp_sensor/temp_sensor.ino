@@ -66,13 +66,15 @@ void loop() {
   // запрос температуры  
   sensor.requestTemp();
   temp = sensor.getTemp();
+  
   Serial.println(temp);
 
   show_temp();
+  
   delay(1000);  
 }
 
-// 
+// Функция отображения температуры 
 void show_temp(){
   if (temp <= lowTemp){ led_off(); } 
   else if (temp <= normTemp){ led_off(); led_blink(GRN_LED_PIN, 2); }
@@ -91,16 +93,19 @@ void led_blink(byte led_pin, byte times){
   }
 }
 
+// Включает красный
 void red_on(){
   digitalWrite(GRN_LED_PIN, LOW);
   digitalWrite(RED_LED_PIN, HIGH);  
 }
 
+// Включает Зеленый
 void green_on(){
   digitalWrite(GRN_LED_PIN, HIGH);
   digitalWrite(RED_LED_PIN, LOW);  
 }
 
+// Выключает диод
 void led_off(){
   digitalWrite(GRN_LED_PIN, LOW);
   digitalWrite(RED_LED_PIN, LOW);
